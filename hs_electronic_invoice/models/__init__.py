@@ -14,4 +14,4 @@ from . import electronic_invoice_province
 from . import electronic_invoice_district
 from . import electronic_invoice_sector
 from . import electronic_invoice_measures
-#from . import electronic_invoice_pos
+from . import electronic_invoice_pos
