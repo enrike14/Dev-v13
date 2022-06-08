@@ -397,8 +397,8 @@ class electronic_invoice_fields(models.Model):
             self.pagadoCompleto = "FECompletada"
             # self.action_download_fe_pdf(self.lastFiscalNumber)
 
-            if 'Shop' in self.invoice_origin:
-                self.get_pdf_fe()
+            # if 'Shop' in self.invoice_origin:
+            # self.get_pdf_fe()
 
         else:
             self.insert_data_to_logs(respuesta, self.name)
