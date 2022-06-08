@@ -52,7 +52,7 @@
 						<field name="tipoVenta_fe" />							
 						<field name="reversal_reason_fe" />	
 						<field name="lastFiscalNumber"/>	
-						<field name="hsfeURLstr">
+						<field name="hsfeURLstr" />
 						<field name="pdfNumber" />
 						<field name="tipoDocPdf" />
 						<field name="tipoEmisionPdf" />
