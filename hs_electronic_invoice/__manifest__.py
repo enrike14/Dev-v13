@@ -15,7 +15,7 @@
     "version": "0.1",
     "licence": "OPL-1",
     # any module necessary for this one to work correctly
-    "depends": ["base", "account_accountant", "pos"],
+    "depends": ["base", "account_accountant", "point_of_sale"],
     # always loaded
     "data": [
         "security/ir.model.access.csv",
