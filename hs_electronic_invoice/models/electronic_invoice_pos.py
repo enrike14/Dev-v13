@@ -12,6 +12,6 @@ class PosOrder(models.Model):
     def action_pos_order_invoice(self):
         act_window = super(PosOrder, self).action_pos_order_invoice()
         for order in self:
-            if order.occount.move_type and order.coount_move.move_type == 'out_invoice':
+            if order.account.move_type and order.account_move.move_type == 'out_invoice':
                 order.account_move.send_fiscal_doc()
         return act_window
