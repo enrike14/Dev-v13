@@ -5,6 +5,7 @@ odoo.define("pos_fe.screens", function (require) {
 
   screens.ReceiptScreenWidget.include({
     printfe: function () {
+      console.log('Funciona JS');
       let self = this;
       let order = self.pos.get_order();
 
