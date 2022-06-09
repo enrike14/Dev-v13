@@ -20,7 +20,7 @@ odoo.define("pos_fe.screens", function (require) {
         timeout: 30000,
         shadow: true,
         }).then(function (file) {
-        if (file.url){
+        if (file){
           console.log(file);
         //window.open(file.url);
         }

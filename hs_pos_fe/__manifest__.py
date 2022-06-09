@@ -18,7 +18,7 @@
     "depends": ["hs_electronic_invoice", "point_of_sale"],
     # always loaded
     "data": [
-        # "views/views_country_field.xml",
+        "views/assets.xml",
     ],
     # only loaded in demonstration mode
     "qweb": [

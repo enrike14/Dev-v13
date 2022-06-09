@@ -29,4 +29,4 @@ class pos_electronic_invoice(models.Model):
 
     def action_print_fe(self, name):
         order = self.env["pos.order"].search([("name", "=", name)], limit=1)
-        return order.account_move
+        return order.account_move.id
