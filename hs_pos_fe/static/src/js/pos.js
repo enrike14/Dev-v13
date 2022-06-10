@@ -11,7 +11,8 @@ odoo.define("pos_fe.screens", function (require) {
 
       var orderName = order.get_name();
       console.log(orderName);
-        await this.rpc({
+      console.log(this.env.session.user_context);
+      /* await this.rpc({
         model: 'pos.order',
         method: 'action_print_fe',
         args: [[orderName]],
@@ -25,7 +26,7 @@ odoo.define("pos_fe.screens", function (require) {
         //window.open(file.url);
         }
         }).catch(function (reason){
-        });
+        });*/
     },
 
     renderElement: function () {
