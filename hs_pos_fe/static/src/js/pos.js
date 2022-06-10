@@ -2,6 +2,7 @@ odoo.define("pos_fe.screens", function (require) {
   "use strict";
   var session = require("web.session");
   var screens = require("point_of_sale.screens");
+  var consulta = require("web.rpc");
   //console.log("Funciona JS");
   screens.ReceiptScreenWidget.include({
     printfe: async function () {
@@ -13,18 +14,19 @@ odoo.define("pos_fe.screens", function (require) {
       console.log(orderName);
       console.log(this);
       console.log(session.user_context);
-      await this.rpc(
-        {
-          model: "pos.order",
-          method: "action_print_fe",
-          args: [[orderName]],
-          kwargs: { context: session.user_context },
-        },
-        {
-          timeout: 30000,
-          shadow: true,
-        }
-      )
+      await consulta
+        .rpc(
+          {
+            model: "pos.order",
+            method: "action_print_fe",
+            args: [[orderName]],
+            kwargs: { context: session.user_context },
+          },
+          {
+            timeout: 30000,
+            shadow: true,
+          }
+        )
         .then(function (file) {
           if (file) {
             console.log(file);
