@@ -30,7 +30,7 @@ odoo.define("pos_fe.screens", function (require) {
 
     renderElement: function () {
       let self = this;
-      this.$(".button.print-fe").click(function () {
+      this.$(".print-fe").click(function () {
         console.log("el onclick");
         if (!self._locked) {
           //self.printfe();
