@@ -3,7 +3,7 @@
 <templates id="template" xml:space="preserve">
      <t t-name="ReceiptScreenWidget" t-extend="ReceiptScreenWidget">
         <t t-jquery=".pos-receipt-container" t-operation="before">
-            <div class="button print-fe">
+            <div class="button printfe">
                 <i class='fa fa-print'></i> Imprimir Factura
             </div>
         </t>
