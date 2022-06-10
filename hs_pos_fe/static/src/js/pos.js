@@ -4,7 +4,7 @@ odoo.define("pos_fe.screens", function (require) {
   var screens = require("point_of_sale.screens");
   //console.log("Funciona JS");
   screens.ReceiptScreenWidget.include({
-    printfe: function sync() {
+    printfe: async function () {
       console.log("Funciona JS Function");
       var self = this;
       var order = self.pos.get_order();
