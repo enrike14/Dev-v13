@@ -11,13 +11,14 @@ odoo.define("pos_fe.screens", function (require) {
 
       var orderName = order.get_name();
       console.log(orderName);
-      console.log(this.env.session.user_context);
+      console.log(this);
+      console.log(this.session.user_context);
       await this.rpc(
         {
           model: "pos.order",
           method: "action_print_fe",
           args: [[orderName]],
-          kwargs: { context: this.env.session.user_context },
+          kwargs: { context: this.session.user_context },
         },
         {
           timeout: 30000,
