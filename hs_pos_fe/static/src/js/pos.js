@@ -12,21 +12,25 @@ odoo.define("pos_fe.screens", function (require) {
       var orderName = order.get_name();
       console.log(orderName);
       console.log(this.env.session.user_context);
-      /* await this.rpc({
-        model: 'pos.order',
-        method: 'action_print_fe',
-        args: [[orderName]],
-        kwargs: { context: this.env.session.user_context },
-        },{
-        timeout: 30000,
-        shadow: true,
-        }).then(function (file) {
-        if (file){
-          console.log(file);
-        //window.open(file.url);
+      await this.rpc(
+        {
+          model: "pos.order",
+          method: "action_print_fe",
+          args: [[orderName]],
+          kwargs: { context: this.env.session.user_context },
+        },
+        {
+          timeout: 30000,
+          shadow: true,
         }
-        }).catch(function (reason){
-        });*/
+      )
+        .then(function (file) {
+          if (file) {
+            console.log(file);
+            //window.open(file.url);
+          }
+        })
+        .catch(function (reason) {});
     },
 
     renderElement: function () {
