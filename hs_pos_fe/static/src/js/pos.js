@@ -6,11 +6,11 @@ odoo.define("pos_fe.screens", function (require) {
   screens.ReceiptScreenWidget.include({
     printfe: function () {
       console.log("Funciona JS Function");
-      //let self = this;
-      //let order = self.pos.get_order();
+      var self = this;
+      var order = self.pos.get_order();
 
-      //const orderName = order.get_name();
-
+      var orderName = order.get_name();
+      console.log(orderName);
       /*  await this.rpc({
         model: 'pos.order',
         method: 'action_print_fe',
