@@ -2,10 +2,10 @@ odoo.define("pos_fe.screens", function (require) {
   "use strict";
 
   var screens = require("point_of_sale.screens");
-  console.log("Funciona JS");
+  //console.log("Funciona JS");
   screens.ReceiptScreenWidget.include({
     printfe: function () {
-      console.log("Funciona JS");
+      console.log("Funciona JS Function");
       //let self = this;
       //let order = self.pos.get_order();
 
@@ -32,9 +32,9 @@ odoo.define("pos_fe.screens", function (require) {
       var self = this;
       this._super();
       this.$(".button.printfe").click(function () {
-        console.log("el onclick");
+        //console.log("el onclick");
         if (!self._locked) {
-          //self.printfe();
+          self.printfe();
         }
       });
     },
