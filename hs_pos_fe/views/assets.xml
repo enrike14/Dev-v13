@@ -2,7 +2,9 @@
 <odoo>
 
     <template id="assets_fe" inherit_id="point_of_sale.assets">
-       
+        <xpath expr="script[last()]" position="after">
+          
+        </xpath>
     </template>
 
 
