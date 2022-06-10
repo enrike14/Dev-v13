@@ -2,7 +2,7 @@ odoo.define("pos_fe.screens", function (require) {
   "use strict";
   var session = require("web.session");
   var screens = require("point_of_sale.screens");
-  var consulta = require("web.rpc");
+  var rpc = require("web.rpc");
   //console.log("Funciona JS");
   screens.ReceiptScreenWidget.include({
     printfe: async function () {
