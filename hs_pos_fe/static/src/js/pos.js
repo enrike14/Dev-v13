@@ -14,8 +14,8 @@ odoo.define("pos_fe.screens", function (require) {
       console.log(orderName);
       console.log(this);
       console.log(session.user_context);
-      await consulta
-        .rpc(
+      await rpc
+        .query(
           {
             model: "pos.order",
             method: "action_print_fe",
