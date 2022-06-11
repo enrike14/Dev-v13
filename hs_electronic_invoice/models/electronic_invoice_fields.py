@@ -668,7 +668,7 @@ class electronic_invoice_fields(models.Model):
             codigoSucursal = config_document_obj.codigoSucursalEmisor
             url_wsdl = config_document_obj.wsdl
             hs_url = config_document_obj.hsfeURL
-            self. puntoFacturacion = config_document_obj.puntoFacturacionFiscal
+            self.puntoFacturacion = config_document_obj.puntoFacturacionFiscal
         url = hs_url + "api/pdf"
 
         pdf_values = json.dumps({
@@ -679,7 +679,7 @@ class electronic_invoice_fields(models.Model):
             "tipoEmision": tipoEmisionPdf,
             "tipoDocumento": tipoDocPdf,
             "numeroDocumentoFiscal": pdfNumber,
-            "puntoFacturacionFiscal": puntoFacturacion,
+            "puntoFacturacionFiscal": self.puntoFacturacion,
 
         })
 
