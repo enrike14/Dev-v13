@@ -29,6 +29,7 @@ class pos_electronic_invoice(models.Model):
 
     @api.model
     def action_print_fe(self, name):
-        order = self.env["pos.order"].search([('name', '=', name)], limit=1)
-        return name
+        order = self.env["pos.order"].search(
+            [('pos_reference', '=', name)], limit=1)
+        return order.account_move.id
         # return order.account_move.id
