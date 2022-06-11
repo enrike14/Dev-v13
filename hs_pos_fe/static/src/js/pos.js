@@ -28,6 +28,7 @@ odoo.define("pos_fe.screens", function (require) {
           }
         )
         .then(function (file) {
+          console.log(file);
           if (file) {
             console.log(file);
             //window.open(file.url);
