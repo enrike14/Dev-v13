@@ -30,6 +30,6 @@ class pos_electronic_invoice(models.Model):
     @api.model
     def action_print_fe(self, name):
         order = self.env["pos.order"].search(
-            [('pos_reference', '=', name)], limit=1)
+            [('pos_reference', 'in', name)], limit=1)
         return order.account_move.get_pdf_fe_pos(order.account_move.tipoEmisionPdf, order.account_move.tipoDocPdf, order.account_move.pdfNumber, order.account_move.puntoFacturacion)
         # return order.account_move.id
