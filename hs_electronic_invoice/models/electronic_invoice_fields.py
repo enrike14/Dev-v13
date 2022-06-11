@@ -667,8 +667,9 @@ class electronic_invoice_fields(models.Model):
             tokenPassword = config_document_obj.tokenPassword
             codigoSucursal = config_document_obj.codigoSucursalEmisor
             url_wsdl = config_document_obj.wsdl
+            hs_url = config_document_obj.hsfeURL
             self. puntoFacturacion = config_document_obj.puntoFacturacionFiscal
-        url = self.hsfeURLstr + "api/pdf"
+        url = hs_url + "api/pdf"
 
         pdf_values = json.dumps({
             "wsdl_url": url_wsdl,
