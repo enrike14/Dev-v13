@@ -27,6 +27,7 @@ _logger = logging.getLogger(__name__)
 class pos_electronic_invoice(models.Model):
     _inherit = "pos.order"
 
+    @api.model
     def action_print_fe(self, name):
         order = self.env["pos.order"].search([("name", "=", name)], limit=1)
         return order.account_move.id
