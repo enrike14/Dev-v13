@@ -19,7 +19,7 @@ odoo.define("pos_fe.screens", function (require) {
           {
             model: "pos.order",
             method: "action_print_fe",
-            args: [[orderName]],
+            args: [{ name: orderName }],
             kwargs: { context: session.user_context },
           },
           {
