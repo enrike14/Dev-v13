@@ -4,6 +4,8 @@ import base64
 from cmath import log
 from io import BytesIO
 from pydoc import cli
+import string
+from tokenize import String
 from xmlrpc.client import DateTime
 from odoo import models, fields, api
 import zeep
@@ -653,6 +655,53 @@ class electronic_invoice_fields(models.Model):
         response = requests.request(
             "POST", url, headers=headers, data=json.dumps(dataJsonItem))
         return json.loads(response.text)
+
+    def get_pdf_fe_pos(self):
+        pdf_doc = ""
+        self.pagadoCompleto = "Finalizado"
+        # constultamos el objeto de nuestra configuración del servicio
+        config_document_obj = self.env["electronic.invoice"].search(
+            [('name', '=', 'ebi-pac')], limit=1)
+        if config_document_obj:
+            tokenEmpresa = config_document_obj.tokenEmpresa
+            tokenPassword = config_document_obj.tokenPassword
+            codigoSucursal = config_document_obj.codigoSucursalEmisor
+            url_wsdl = config_document_obj.wsdl
+            self. puntoFacturacion = config_document_obj.puntoFacturacionFiscal
+        url = self.hsfeURLstr + "api/pdf"
+
+        pdf_values = json.dumps({
+            "wsdl_url": url_wsdl,
+            "codigoSucursalEmisor": codigoSucursal,
+            "tokenEmpresa": tokenEmpresa,
+            "tokenPassword": tokenPassword,
+            "tipoEmision": self.tipoEmisionPdf,
+            "tipoDocumento": self.tipoDocPdf,
+            "numeroDocumentoFiscal": self.pdfNumber,
+            "puntoFacturacionFiscal": self.puntoFacturacion,
+
+        })
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + str(self.api_token)
+        }
+
+        logging.info('Enviado PDF:: ' + str(pdf_values))
+
+        correcto = False
+        #logging.info("PD 64" + str(response))
+        while correcto != True:
+            response = requests.request(
+                "POST", url, headers=headers, data=pdf_values)
+            respuesta = json.loads(response.text)
+            logging.info('Resultado PDF:: ' + str(response.text))
+            if respuesta["codigo"] == "200":
+                correcto = True
+                pdf_doc = str(respuesta["documento"])
+                self.download_pdf(self.pdfNumber, str(respuesta["documento"]))
+
+        return pdf_doc
 
     def get_pdf_fe(self):
         self.pagadoCompleto = "Finalizado"
