@@ -31,8 +31,18 @@ odoo.define("pos_fe.screens", function (require) {
           console.log(file);
           if (file) {
             console.log(file);
-            window.open("data:application/pdf," + encodeURI(file));
-            //window.open(file.url);
+            //window.open("data:application/pdf," + encodeURI(file));
+            var byteCharacters = atob(file);
+            var byteNumbers = new Array(byteCharacters.length);
+            for (var i = 0; i < byteCharacters.length; i++) {
+              byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            var file = new Blob([byteArray], {
+              type: "application/pdf;base64",
+            });
+            var fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
           }
         })
         .catch(function (reason) {});
