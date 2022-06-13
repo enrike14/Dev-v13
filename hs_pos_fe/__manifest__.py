@@ -19,11 +19,11 @@
     # always loaded
     "data": [
         "views/assets.xml",
+        "views/invoice_pos_conf.xml"
     ],
     # only loaded in demonstration mode
     "qweb": [
         "static/src/xml/pos.xml",
-        "static/src/xml/invoice_pos_conf.xml"
 
     ],
 }
