@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+	<record id="electronic_invoice_fields_pos_inherit_form" model="ir.ui.view">
+	  <field name="name">electronic.invoice.fields.pos.inherit.form</field>
+	  <field name="model">electronic.invoice</field>
+	  <field name="inherit_id" ref="hs_electronic_invoice.electronic_invoice_form"/>
+	  <field name="arch" type="xml">
+		<xpath expr="//field[@name='hsPassword']" position="after" >		
+			<field name="pos_module" />	
+		</xpath>
+	
+	  </field>
+	</record>
+
+	<!-- actions opening views on models -->
+
+	<record model="ir.actions.act_window" id="electronic_invoice">
+		<field name="name">Factura Electronica POS</field>
+		<field name="res_model">electronic.invoice</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+  </data>
+</odoo>
