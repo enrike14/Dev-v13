@@ -173,6 +173,7 @@ class electronic_invoice_fields(models.Model):
     api_token = ""
 
     puntoFacturacion = "0000"
+    cafe = ""
 
     @api.depends('qr_code')
     def on_change_pago(self):
@@ -376,6 +377,7 @@ class electronic_invoice_fields(models.Model):
                 tipo_doc_text = "Factura Electrónica Creada" + \
                     " :<br> <b>CUFE:</b> (<a target='_blank' href='" + \
                     respuesta['qr']+"'>"+str(respuesta['cufe'])+")</a><br>"
+                self.cafe = str(respuesta['cufe'])
                 if self.tipo_documento_fe == "04":
                     tipo_doc_text = "Nota de Crédito Creada" + \
                         " :<br> <b>CUFE:</b> (<a target='_blank' href='" + \
@@ -657,7 +659,13 @@ class electronic_invoice_fields(models.Model):
         return json.loads(response.text)
 
     def get_fe_info(self):
-        fe_info = {'cafe': '34', 'qr': '61', 'isPOS': True}
+        config_document_obj = self.env["electronic.invoice"].search(
+            [('name', '=', 'ebi-pac')], limit=1)
+        if config_document_obj:
+            isPos = config_document_obj.pos_module
+
+        fe_info = {'cafe': self.cafe, 'qr': str(
+            self.qr_code), 'isPOS': str(isPos)}
         return fe_info
 
     def get_pdf_fe_pos(self):
