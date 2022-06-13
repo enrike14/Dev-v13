@@ -27,6 +27,7 @@ class PosOrder(models.Model):
                     if str(info) == 'isPOS':
                         if str(fe_info[info]) == 'True':
                             order.account_move.send_fiscal_doc()
+                            order.include_pos = str(fe_info[info])
 
                 """ for info in fe_info:
 
