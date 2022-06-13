@@ -18,6 +18,12 @@ class PosOrder(models.Model):
                 for info in fe_info:
                     logging.info("KEY: " + str(info) +
                                  " VAUE: " + str(fe_info[info]))
+                    if str(info) == 'cafe':
+                        cafe = str(fe_info[info])
+
+                    if str(info) == 'qr':
+                        qr = fe_info[info]
+
                 """ for info in fe_info:
 
                     if info == 'cafe':
