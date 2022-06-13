@@ -15,6 +15,8 @@ class PosOrder(models.Model):
             if order.account_move and order.account_move.type == 'out_invoice':
                 fe_info = order.account_move.get_fe_info()
                 logging.info("RETORNO FE INFO:" + str(fe_info))
+                for info in fe_info:
+                    logging.info("KEY: " + info + " VAUE: " + fe_info[info])
                 """ for info in fe_info:
 
                     if info == 'cafe':
