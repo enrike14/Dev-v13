@@ -34,7 +34,7 @@ class PosOrder(models.Model):
                              order.account_move.is_Pos_info())
                 if order.account_move.is_Pos_info() == 'True':
                     order.include_pos = str(order.account_move.is_Pos_info())
-                    order.account_move.send_fiscal_doc()
+                    # order.account_move.send_fiscal_doc()
                     fe_info_cafe = order.account_move.get_fe_info()
                     logging.info("RETORNO FE INFO:" + str(fe_info_cafe))
 
