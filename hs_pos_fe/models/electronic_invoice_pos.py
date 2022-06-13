@@ -33,20 +33,12 @@ class PosOrder(models.Model):
                 logging.info("IS POS INFO::::::" +
                              order.account_move.is_Pos_info())
                 if order.account_move.is_Pos_info() == 'True':
+                    order.include_pos = str(order.account_move.is_Pos_info())
                     order.account_move.send_fiscal_doc()
-                    fe_info = order.account_move.get_fe_info()
-                    logging.info("RETORNO FE INFO:" + str(fe_info))
-                    for info in fe_info:
-                        logging.info("KEY: " + str(info) +
-                                     " VAUE: " + str(fe_info[info]))
-                        if str(info) == 'cafe':
-                            cafe = str(fe_info[info])
+                    fe_info_cafe = order.account_move.get_fe_info()
+                    logging.info("RETORNO FE INFO:" + str(fe_info_cafe))
 
-                        if str(info) == 'qr':
-                            qr = fe_info[info]
-
-                        order.include_pos = str(fe_info[info])
-                        self.generate_qr(str(qr))
-                        order.CAFE = str(cafe)
+                    self.generate_qr(fe_info_cafe)
+                    order.CAFE = str(fe_info_cafe)
 
         return act_window

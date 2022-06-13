@@ -377,7 +377,6 @@ class electronic_invoice_fields(models.Model):
                 tipo_doc_text = "Factura Electrónica Creada" + \
                     " :<br> <b>CUFE:</b> (<a target='_blank' href='" + \
                     respuesta['qr']+"'>"+str(respuesta['cufe'])+")</a><br>"
-                self.cafe = str(respuesta['cufe'])
                 if self.tipo_documento_fe == "04":
                     tipo_doc_text = "Nota de Crédito Creada" + \
                         " :<br> <b>CUFE:</b> (<a target='_blank' href='" + \
@@ -394,6 +393,7 @@ class electronic_invoice_fields(models.Model):
             # add QR in invoice info
             if 'qr' in respuesta:
                 self.generate_qr(respuesta)
+                self.cafe = respuesta
 
             ##self.download_pdf(self.lastFiscalNumber, respuesta['pdf_document'])
             if respuesta['mensaje'] == "Proceso de Anulación ejecutado con éxito.":
@@ -659,11 +659,10 @@ class electronic_invoice_fields(models.Model):
         return json.loads(response.text)
 
     def get_fe_info(self):
-        fe_info = {'cafe': self.cafe, 'qr': str(self.qr_code)}
-        return fe_info
+        return self.cafe
 
     def is_Pos_info(self):
-        isPos = "false"
+        isPos = "False"
         config_document_obj = self.env["electronic.invoice"].search(
             [('name', '=', 'ebi-pac')], limit=1)
         if config_document_obj:
