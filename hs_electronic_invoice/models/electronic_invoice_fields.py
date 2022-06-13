@@ -656,7 +656,11 @@ class electronic_invoice_fields(models.Model):
             "POST", url, headers=headers, data=json.dumps(dataJsonItem))
         return json.loads(response.text)
 
-    def get_pdf_fe_pos(self, tipoEmisionPdf, tipoDocPdf, pdfNumber, puntoFacturacion):
+    def get_fe_info(self):
+        fe_info = {'cafe': '34', 'qr': '61', 'isPOS': True}
+        return fe_info
+
+    def get_pdf_fe_pos(self):
         pdf_doc = ""
         self.pagadoCompleto = "Finalizado"
         # constultamos el objeto de nuestra configuración del servicio
@@ -676,9 +680,9 @@ class electronic_invoice_fields(models.Model):
             "codigoSucursalEmisor": codigoSucursal,
             "tokenEmpresa": tokenEmpresa,
             "tokenPassword": tokenPassword,
-            "tipoEmision": tipoEmisionPdf,
-            "tipoDocumento": tipoDocPdf,
-            "numeroDocumentoFiscal": pdfNumber,
+            "tipoEmision": self.tipoEmisionPdf,
+            "tipoDocumento": self.tipoDocPdf,
+            "numeroDocumentoFiscal": self.pdfNumber,
             "puntoFacturacionFiscal": self.puntoFacturacion,
 
         })

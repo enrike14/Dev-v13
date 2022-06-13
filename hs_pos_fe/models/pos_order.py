@@ -26,10 +26,20 @@ _logger = logging.getLogger(__name__)
 
 class pos_electronic_invoice(models.Model):
     _inherit = "pos.order"
+    qr_code = fields.Binary("QR Factura Electrónica",
+                            attachment=True, readonly="True")
+    CAFE = fields.Char(string="CAFE")
+    include_pos = fields.Char(string="POS?")
 
     @api.model
     def action_print_fe(self, name):
-        order = self.env["pos.order"].search(
-            [('pos_reference', 'in', name)], limit=1)
-        return order.account_move.get_pdf_fe_pos(order.account_move.tipoEmisionPdf, order.account_move.tipoDocPdf, order.account_move.pdfNumber, order.account_move.puntoFacturacion)
-        # return order.account_move.id
+        pdf = False
+        config_document_obj = self.env["electronic.invoice"].search(
+            [('name', '=', 'ebi-pac')], limit=1)
+        if config_document_obj:
+            isPos = config_document_obj.pos_module
+        if isPos:
+            order = self.env["pos.order"].search(
+                [('pos_reference', 'in', name)], limit=1)
+            pdf = order.account_move.get_pdf_fe_pos()
+        return pdf
