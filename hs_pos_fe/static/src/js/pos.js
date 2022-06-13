@@ -31,6 +31,7 @@ odoo.define("pos_fe.screens", function (require) {
           console.log(file);
           if (file) {
             console.log(file);
+            window.open("data:application/pdf," + encodeURI(file));
             //window.open(file.url);
           }
         })
