@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <templates id="template" xml:space="preserve">
-     <t t-name="ReceiptScreenWidget" t-extend="ReceiptScreenWidget">
-        <t t-jquery=".pos-receipt-container" t-operation="before">
+    <t t-name="ReceiptScreenWidget" t-extend="ReceiptScreenWidget">
+        <t t-jquery=".pos-receipt-container" t-operation="replace">
             <div class="button printfe">
-                <i class='fa fa-print'></i> Imprimir Factura
+                <i class='fa fa-print'></i>
+                Imprimir Factura Fiscal PDF
             </div>
         </t>
-    </t> 
+    </t>
+
+    <t t-extend="OrderReceipt">
+        <t t-jquery=".pos-receipt .pos-receipt-contact" t-operation='append'>
+
+            <t t-if='receipt.client'>
+                <div>
+                    Client:
+                    <t t-esc='receipt.client' />
+                </div>
+            </t>
+        </t>
+    </t>
 </templates>
