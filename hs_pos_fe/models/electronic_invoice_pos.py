@@ -4,6 +4,7 @@ from odoo import models, fields, api
 import qrcode
 import logging
 from io import BytesIO
+import time
 
 _logger = logging.getLogger(__name__)
 
@@ -34,7 +35,8 @@ class PosOrder(models.Model):
                              order.account_move.is_Pos_info())
                 if order.account_move.is_Pos_info() == 'True':
                     order.include_pos = str(order.account_move.is_Pos_info())
-                    # order.account_move.send_fiscal_doc()
+                    order.account_move.send_fiscal_doc()
+                    time.sleep(4)
                     fe_info_cafe = order.account_move.get_fe_info()
                     logging.info("RETORNO FE INFO:" + str(fe_info_cafe))
 
