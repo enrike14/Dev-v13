@@ -663,11 +663,12 @@ class electronic_invoice_fields(models.Model):
         return fe_info
 
     def is_Pos_info(self):
+        isPos = "false"
         config_document_obj = self.env["electronic.invoice"].search(
             [('name', '=', 'ebi-pac')], limit=1)
         if config_document_obj:
             isPos = config_document_obj.pos_module
-        return isPos
+        return str(isPos)
 
     def get_pdf_fe_pos(self):
         pdf_doc = ""

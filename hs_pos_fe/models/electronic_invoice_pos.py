@@ -30,6 +30,8 @@ class PosOrder(models.Model):
         act_window = super(PosOrder, self).action_pos_order_invoice()
         for order in self:
             if order.account_move and order.account_move.type == 'out_invoice':
+                logging.info("IS POS INFO::::::" +
+                             order.account_move.is_Pos_info())
                 if order.account_move.is_Pos_info() == 'True':
                     order.account_move.send_fiscal_doc()
                     fe_info = order.account_move.get_fe_info()
