@@ -23,5 +23,7 @@
     # only loaded in demonstration mode
     "qweb": [
         "static/src/xml/pos.xml",
+        "static/src/xml/invoice_pos_conf.xml"
+
     ],
 }
