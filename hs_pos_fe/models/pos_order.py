@@ -33,13 +33,7 @@ class pos_electronic_invoice(models.Model):
 
     @api.model
     def action_print_fe(self, name):
-        pdf = False
-        config_document_obj = self.env["electronic.invoice"].search(
-            [('name', '=', 'ebi-pac')], limit=1)
-        if config_document_obj:
-            isPos = config_document_obj.pos_module
-        if isPos:
-            order = self.env["pos.order"].search(
-                [('pos_reference', 'in', name)], limit=1)
-            pdf = order.account_move.get_pdf_fe_pos()
-        return pdf
+        order = self.env["pos.order"].search(
+            [('pos_reference', 'in', name)], limit=1)
+        return order.account_move.get_pdf_fe_pos()
+        # return order.account_move.id
