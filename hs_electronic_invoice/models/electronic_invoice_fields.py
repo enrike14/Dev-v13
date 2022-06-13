@@ -659,14 +659,15 @@ class electronic_invoice_fields(models.Model):
         return json.loads(response.text)
 
     def get_fe_info(self):
+        fe_info = {'cafe': self.cafe, 'qr': str(self.qr_code)}
+        return fe_info
+
+    def is_Pos_info(self):
         config_document_obj = self.env["electronic.invoice"].search(
             [('name', '=', 'ebi-pac')], limit=1)
         if config_document_obj:
             isPos = config_document_obj.pos_module
-
-        fe_info = {'cafe': self.cafe, 'qr': str(
-            self.qr_code), 'isPOS': str(isPos)}
-        return fe_info
+        return isPos
 
     def get_pdf_fe_pos(self):
         pdf_doc = ""
