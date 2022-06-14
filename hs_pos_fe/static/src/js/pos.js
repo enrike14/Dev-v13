@@ -92,7 +92,7 @@ odoo.define("pos_fe.screens", function (require) {
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
       //var qrfe = await this.getfevalues();
-      receipt_data.qr = qrfe;
+      receipt_data.qr = "QRRRR";
       console.log("DATA::::::::" + receipt_data);
 
       return {
