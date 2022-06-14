@@ -3,6 +3,9 @@ odoo.define("pos_fe.screens", function (require) {
   var session = require("web.session");
   var screens = require("point_of_sale.screens");
   var rpc = require("web.rpc");
+  var models = require("point_of_sale.models");
+  models.load_fields("pos.order", "cafe");
+  models.load_fields("pos.order", "qr_code");
   //console.log("Funciona JS");
   screens.ReceiptScreenWidget.include({
     printfe: async function () {
