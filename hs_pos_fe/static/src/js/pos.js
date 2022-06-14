@@ -125,6 +125,9 @@ odoo.define("pos_receipt_custom.ReceiptScreenWidget", function (require) {
         final_pd = final_pd + line.price_display + "</pre>";
         line.final_pd = final_pd;
       });
+
+      console.log("DATA::::::::" + receipt_data);
+
       return {
         widget: this,
         pos: this.pos,
