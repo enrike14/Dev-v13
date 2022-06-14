@@ -25,7 +25,7 @@
             <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
             <t t-if='widget.pos.get_order()'>
                 <div>
-
+                    cafe:
                     <t t-esc='order.CAFE' />
                 </div>
             </t>
