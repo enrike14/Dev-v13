@@ -62,19 +62,10 @@ odoo.define("pos_fe.screens", function (require) {
         }
       });
     },
-  });
-});
 
-odoo.define("pos_receipt_custom.ReceiptScreenWidget", function (require) {
-  "use strict";
-  var screens = require("point_of_sale.screens");
-  var ReceiptScreenWidget = screens.ReceiptScreenWidget;
-
-  ReceiptScreenWidget.include({
     getfevalues: async function () {
       var self = this;
       var order = self.pos.get_order();
-
       var orderName = order.get_name();
 
       await rpc
@@ -96,10 +87,11 @@ odoo.define("pos_receipt_custom.ReceiptScreenWidget", function (require) {
         })
         .catch(function (reason) {});
     },
+
     get_receipt_render_env: async function () {
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
-      var qrfe = await self.getfevalues();
+      var qrfe = self.getfevalues();
       receipt_data.qr = qrfe;
       console.log("DATA::::::::" + receipt_data);
 
