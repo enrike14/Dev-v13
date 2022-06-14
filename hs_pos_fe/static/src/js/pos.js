@@ -4,7 +4,10 @@ odoo.define("pos_fe.screens", function (require) {
   var screens = require("point_of_sale.screens");
   var rpc = require("web.rpc");
   var models = require("point_of_sale.models");
-  //models.load_fields("pos.order", ["CAFE"]);
+  models.load_fields({
+    model: "pos.order",
+    fields: ["CAFE"],
+  });
   //models.load_fields("pos.order", ['qr_code']);
   console.log(models);
   screens.ReceiptScreenWidget.include({
