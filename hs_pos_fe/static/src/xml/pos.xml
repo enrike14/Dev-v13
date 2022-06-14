@@ -26,9 +26,10 @@
             <t t-if='receipt.cafe'>
                 <div>
                     CAFE:
-                    <t t-esc='receipt.cafe' />
+                    <t t-esc='order.cafe' />
                 </div>
             </t>
+            <div>o escaneando el código QR</div>
         </t>
 
 
