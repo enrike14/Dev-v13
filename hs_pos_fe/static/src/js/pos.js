@@ -4,10 +4,7 @@ odoo.define("pos_fe.screens", function (require) {
   var screens = require("point_of_sale.screens");
   var rpc = require("web.rpc");
   var models = require("point_of_sale.models");
-  models.load_fields({
-    model: "pos.order",
-    fields: ["CAFE"],
-  });
+
   //models.load_fields("pos.order", ['qr_code']);
   console.log(models);
   screens.ReceiptScreenWidget.include({
@@ -94,6 +91,10 @@ odoo.define("pos_fe.screens", function (require) {
     get_receipt_render_env: function () {
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
+      models.load_fields({
+        model: "pos.order",
+        fields: ["CAFE"],
+      });
       //var qrfe = await this.getfevalues();
       receipt_data.qr = "QRRRR";
       console.log("DATA::::::::" + receipt_data);
