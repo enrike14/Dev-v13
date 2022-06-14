@@ -23,10 +23,10 @@
 
         <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
             <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
-            <t t-if='widget.pos.get_order.cafe'>
+            <t t-if='pos.get_order.cafe'>
                 <div>
 
-                    <t t-esc='widget.pos.get_order.cafe' />
+                    <t t-esc='pos.get_order.cafe' />
                 </div>
             </t>
             <div>o escaneando el código QR</div>
