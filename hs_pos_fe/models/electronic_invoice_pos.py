@@ -12,6 +12,17 @@ _logger = logging.getLogger(__name__)
 class PosOrder(models.Model):
     _inherit = "pos.order"
 
+    qr_code = fields.Binary("QR Factura Electrónica",
+                            attachment=True, readonly="True")
+    CAFE = fields.Char(string="CAFE")
+    include_pos = fields.Char(string="POS?")
+
+    @api.model
+    def action_print_fe(self, name):
+        order = self.env["pos.order"].search(
+            [('pos_reference', 'in', name)], limit=1)
+        return order.account_move.get_pdf_fe_pos()
+
     def generate_qr(self, strQR):
         qr = qrcode.QRCode(
             version=1,
