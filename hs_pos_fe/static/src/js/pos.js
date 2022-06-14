@@ -95,7 +95,7 @@ odoo.define("pos_receipt_custom.ReceiptScreenWidget", function (require) {
         })
         .catch(function (reason) {});
     },
-    get_receipt_render_env: async function () {
+    get_receipt_render_env: function () {
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
       //var qrfe = await this.getfevalues();
