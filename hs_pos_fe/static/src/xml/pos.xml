@@ -12,6 +12,9 @@
 
 
     <t t-extend="OrderReceipt">
+        <t t-jquery=".pos-receipt" t-operation='before'>
+            <div>Comprobante Auxiliar de Factura Electrónica</div>
+        </t>
         <t t-jquery=".pos-receipt .pos-receipt-contact" t-operation='append'>
 
             <t t-if='receipt.client'>
