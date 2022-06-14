@@ -12,7 +12,7 @@ odoo.define("pos_fe.screens", function (require) {
       console.log("Funciona JS Function");
       var self = this;
       var order = self.pos.get_order();
-      console.log(order.CAFE);
+      console.log(order);
 
       var orderName = order.get_name();
       console.log(orderName);
