@@ -4,6 +4,7 @@ odoo.define("pos_fe.screens", function (require) {
   var screens = require("point_of_sale.screens");
   var rpc = require("web.rpc");
   var models = require("point_of_sale.models");
+  var CAFE = "123456789123654789";
 
   //models.load_fields("pos.order", ['qr_code']);
   console.log(models);
@@ -83,7 +84,8 @@ odoo.define("pos_fe.screens", function (require) {
         )
         .then(function (dato) {
           console.log(dato);
-          return "datossssss";
+          CAFE = "0000000000000000000000000000000000000000";
+          //return "datossssss";
         })
         .catch(function (reason) {});
     },
@@ -91,22 +93,20 @@ odoo.define("pos_fe.screens", function (require) {
     get_receipt_render_env: function () {
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
-      models.load_fields({
-        model: "pos.order",
-        fields: ["CAFE"],
-      });
-      //var qrfe = await this.getfevalues();
-      receipt_data.qr = "QRRRR";
+      this.getfevalues();
+      receipt_data.qr = CAFE;
       console.log("DATA::::::::" + receipt_data);
 
-      return {
-        widget: this,
-        pos: this.pos,
-        order: order,
-        receipt: receipt_data,
-        orderlines: order.get_orderlines(),
-        paymentlines: order.get_paymentlines(),
-      };
+      setTimeout(function () {
+        return {
+          widget: this,
+          pos: this.pos,
+          order: order,
+          receipt: receipt_data,
+          orderlines: order.get_orderlines(),
+          paymentlines: order.get_paymentlines(),
+        };
+      }, 3000);
     },
   });
 });
