@@ -12,24 +12,39 @@
 
 
     <t t-extend="OrderReceipt">
-        <t t-jquery=".pos-receipt .pos-receipt-contact" t-operation='append'>
 
+
+        <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='before'>
+            <br />
+
+            <div>
+                    Comprobante Auxiliar de Factura Electrónica
+                   
+                </div>
+
+        </t>
+
+        <t t-jquery=".pos-receipt .pos-receipt-contact" t-operation='append'>
+            <br />
             <t t-if='receipt.client'>
                 <div>
-                    Client:
+                    Cliente:
                     <t t-esc='receipt.client' />
                 </div>
             </t>
         </t>
 
         <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
+            <br />
             <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
+            <br />
             <t t-if='widget.pos.get_order()'>
                 <div>
 
                     <t t-esc='receipt.cufe' />
                 </div>
             </t>
+            <br />
             <div>o escaneando el código QR</div>
         </t>
 
