@@ -91,6 +91,7 @@ odoo.define("pos_fe.screens", function (require) {
     },
 
     get_receipt_render_env: function () {
+      models.load_fields("pos.order", "CAFE");
       var order = this.pos.get_order();
       var receipt_data = order.export_for_printing();
       this.getfevalues();

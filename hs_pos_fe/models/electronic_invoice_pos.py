@@ -13,9 +13,9 @@ class PosOrder(models.Model):
     _inherit = "pos.order"
 
     qr_code = fields.Binary("QR Factura Electrónica",
-                            attachment=True, readonly="True")
-    CAFE = fields.Char(string="CAFE")
-    include_pos = fields.Char(string="POS?")
+                            attachment=True, readonly="True", store=True)
+    CAFE = fields.Char(string="CAFE", store=True)
+    include_pos = fields.Char(string="POS?", store=True)
 
     @api.model
     def action_print_fe(self, name):
