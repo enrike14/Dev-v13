@@ -55,3 +55,11 @@ class PosOrder(models.Model):
                     order.CAFE = str(fe_info_cafe)
 
         return act_window
+
+    @api.model
+    def create_from_ui(self, orders, draft=False):
+        order_list = super(PosOrder, self).create_from_ui(orders, draft=draft)
+        cufe = self.browse(order_list[0].get('id')).CAFE
+        order_list[0]["CAFE"] = cufe
+
+        return order_list

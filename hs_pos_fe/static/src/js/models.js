@@ -5,6 +5,11 @@ odoo.define("pos_fe.models", function (require) {
   var _super_order = models.PosModel.prototype;
 
   models.PosModel = models.PosModel.extend({
+    _save_to_server: function (orders, options) {
+      var order_list = _super_order._save_to_server.apply(this, arguments);
+      console.log(order_list);
+      return order_list;
+    },
     initialize: function (session, attributes) {
       var self = this;
       models.load_fields("pos.order", ["CAFE", "qr_code", "include_pos"]);
