@@ -11,7 +11,7 @@ odoo.define("pos_fe.models", function (require) {
       order_list.then(
         function (value) {
           console.log(value);
-          localStorage.setItem("cufe", value);
+          localStorage.setItem("cufe", value[0].CAFE);
         },
         function (error) {
           console.log(error);
