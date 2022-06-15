@@ -11,12 +11,13 @@ odoo.define("pos_fe.models", function (require) {
       order_list.then(
         function (value) {
           console.log(value);
+          return value;
         },
         function (error) {
           console.log(error);
+          return order_list;
         }
       );
-      return order_list;
     },
     initialize: function (session, attributes) {
       var self = this;
