@@ -27,7 +27,7 @@
             <t t-if='widget.pos.get_order()'>
                 <div>
 
-                    <t t-esc='widget.pos.get_order().cufe' />
+                    <t t-esc='receipt.cufe' />
                 </div>
             </t>
             <div>o escaneando el código QR</div>
