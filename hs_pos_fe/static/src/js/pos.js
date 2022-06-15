@@ -58,5 +58,18 @@ odoo.define("pos_fe.screens", function (require) {
         }
       });
     },
+    get_receipt_render_env: function () {
+      var order = this.pos.get_order();
+      var receipt_data = order.export_for_printing();
+
+      return {
+        widget: this,
+        pos: this.pos,
+        order: order,
+        receipt: receipt_data,
+        orderlines: order.get_orderlines(),
+        paymentlines: order.get_paymentlines(),
+      };
+    },
   });
 });
