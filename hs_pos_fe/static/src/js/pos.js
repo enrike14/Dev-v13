@@ -98,16 +98,14 @@ odoo.define("pos_fe.screens", function (require) {
       receipt_data.qr = CAFE;
       console.log("DATA::::::::" + receipt_data);
 
-      setTimeout(function () {
-        return {
-          widget: this,
-          pos: this.pos,
-          order: order,
-          receipt: receipt_data,
-          orderlines: order.get_orderlines(),
-          paymentlines: order.get_paymentlines(),
-        };
-      }, 3000);
+      return {
+        widget: this,
+        pos: this.pos,
+        order: order,
+        receipt: receipt_data,
+        orderlines: order.get_orderlines(),
+        paymentlines: order.get_paymentlines(),
+      };
     },
   });
 });
