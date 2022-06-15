@@ -18,7 +18,9 @@ odoo.define("pos_fe.models", function (require) {
           return order_list;
         }
       );
+      return order_list;
     },
+
     initialize: function (session, attributes) {
       var self = this;
       models.load_fields("pos.order", ["CAFE", "qr_code", "include_pos"]);
