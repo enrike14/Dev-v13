@@ -7,7 +7,15 @@ odoo.define("pos_fe.models", function (require) {
   models.PosModel = models.PosModel.extend({
     _save_to_server: function (orders, options) {
       var order_list = _super_order._save_to_server.apply(this, arguments);
-      console.log(order_list);
+
+      order_list.then(
+        function (value) {
+          console.log(value);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
       return order_list;
     },
     initialize: function (session, attributes) {
