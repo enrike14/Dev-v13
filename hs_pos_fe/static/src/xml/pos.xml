@@ -27,7 +27,7 @@
             <t t-if='widget.pos.get_order()'>
                 <div>
                     cafe:
-                    <t t-esc='widget.pos.get_order().CAFE' />
+                    <t t-esc='widget.pos.get_order().cufe' />
                 </div>
             </t>
             <div>o escaneando el código QR</div>

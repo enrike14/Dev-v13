@@ -3,14 +3,9 @@ odoo.define("pos_fe.screens", function (require) {
   var session = require("web.session");
   var screens = require("point_of_sale.screens");
   var rpc = require("web.rpc");
-  var models = require("point_of_sale.models");
-  var CAFE = "123456789123654789";
 
-  //models.load_fields("pos.order", ['qr_code']);
-  console.log(models);
   screens.ReceiptScreenWidget.include({
     printfe: async function () {
-      console.log("Funciona JS Function");
       var self = this;
       var order = self.pos.get_order();
       console.log(order);
@@ -62,50 +57,6 @@ odoo.define("pos_fe.screens", function (require) {
           self.printfe();
         }
       });
-    },
-
-    getfevalues: async function () {
-      var self = this;
-      var order = self.pos.get_order();
-      var orderName = order.get_name();
-
-      await rpc
-        .query(
-          {
-            model: "pos.order",
-            method: "action_print_fe",
-            args: [[orderName]],
-            kwargs: { context: session.user_context },
-          },
-          {
-            timeout: 30000,
-            shadow: true,
-          }
-        )
-        .then(function (dato) {
-          console.log(dato);
-          CAFE = "0000000000000000000000000000000000000000";
-          //return "datossssss";
-        })
-        .catch(function (reason) {});
-    },
-
-    get_receipt_render_env: function () {
-      models.load_fields("pos.order", "CAFE");
-      var order = this.pos.get_order();
-      var receipt_data = order.export_for_printing();
-      this.getfevalues();
-      receipt_data.qr = CAFE;
-      console.log("DATA::::::::" + receipt_data);
-
-      return {
-        widget: this,
-        pos: this.pos,
-        order: order,
-        receipt: receipt_data,
-        orderlines: order.get_orderlines(),
-        paymentlines: order.get_paymentlines(),
-      };
     },
   });
 });
