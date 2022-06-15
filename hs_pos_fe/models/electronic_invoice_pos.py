@@ -14,7 +14,7 @@ class PosOrder(models.Model):
 
     qr_code = fields.Binary("QR Factura Electrónica",
                             attachment=True, readonly="True", store=True)
-    cufe = fields.Char(string="CAFE", store=True)
+    CAFE = fields.Char(string="CAFE", store=True)
     include_pos = fields.Char(string="POS?", store=True)
 
     @api.model

@@ -6,7 +6,7 @@ odoo.define("pos_fe.receipt", function (require) {
   models.Orderline = models.Orderline.extend({
     export_for_printing: function () {
       var line = _super_orderline.export_for_printing.apply(this, arguments);
-      line.cufe = this.get_order().cufe;
+      line.cufe = this.get_order().CAFE;
       return line;
     },
   });
