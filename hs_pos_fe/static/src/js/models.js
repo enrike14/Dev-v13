@@ -10,8 +10,12 @@ odoo.define("pos_fe.models", function (require) {
       order_list.then(
         function (value) {
           console.log(value);
-          localStorage.setItem("cufe", value[0].CAFE);
-          localStorage.setItem("qr_code", value[0].qr_str);
+          try {
+            localStorage.setItem("cufe", value[0].CAFE);
+            localStorage.setItem("qr_code", value[0].qr_str);
+          } catch (error) {
+            console.error(error);
+          }
         },
         function (error) {
           console.log(error);
