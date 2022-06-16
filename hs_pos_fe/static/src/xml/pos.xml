@@ -17,7 +17,7 @@
         <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='before'>
             <br />
 
-            <div class="text-center">
+            <div class="pos-receipt-contact">
                     Comprobante Auxiliar de Factura Electrónica
                    
                 </div>
@@ -50,7 +50,7 @@
                 <div>
                     <t t-esc='receipt.qr_code' />
                     <t t-if='receipt.company.logo'>
-                        <img t-att-src='receipt.company.logo' />
+                        <img class="pos-receipt-logo" t-att-src='receipt.company.logo' />
                         <br />
                     </t>
                 </div>
