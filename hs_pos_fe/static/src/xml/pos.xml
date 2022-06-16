@@ -50,7 +50,7 @@
                 <div>
                     <t t-esc='receipt.qr_code' />
                     <t t-if='receipt.company.logo'>
-                        <img class="pos-receipt-logo" t-att-src='/web/image?model=pos.order&amp;id=187&amp;field=qr_code' />
+                        <img class="pos-receipt-logo" t-att-src='receipt.qr_img' />
                         <br />
                     </t>
                 </div>
