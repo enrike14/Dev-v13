@@ -65,7 +65,7 @@ odoo.define("pos_fe.screens", function (require) {
       receipt_data.cufe = localStorage.getItem("cufe");
       receipt_data.qr_code = localStorage.getItem("qr_code");
       receipt_data.qr_img =
-        "/web/image?model=pos.order&id=" + localStorage.getItem("qr_code");
+        "/web/image?model=pos.order&id=" + localStorage.getItem("id");
       +"&field=qr_code";
 
       return {
