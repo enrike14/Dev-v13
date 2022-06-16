@@ -17,7 +17,7 @@
         <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='before'>
             <br />
 
-            <div style="font-size:10px;">
+            <div>
                     Comprobante Auxiliar de Factura Electrónica
                    
                 </div>
