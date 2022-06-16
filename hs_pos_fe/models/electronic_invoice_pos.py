@@ -16,6 +16,7 @@ class PosOrder(models.Model):
                             attachment=True, readonly="True", store=True)
     CAFE = fields.Char(string="CAFE", store=True)
     include_pos = fields.Char(string="POS?", store=True)
+    qr_str = fields.Char(string="POS?", store=True)
 
     @api.model
     def action_print_fe(self, name):
@@ -49,10 +50,12 @@ class PosOrder(models.Model):
                     order.account_move.send_fiscal_doc()
                     time.sleep(4)
                     fe_info_cafe = order.account_move.get_fe_info()
-                    logging.info("RETORNO FE INFO:" + str(fe_info_cafe))
+                    fe_info_qr = order.account_move.get_fe_info_qr()
+                    logging.info("RETORNO FE INFO:" + str(fe_info_qr))
 
-                    self.generate_qr(fe_info_cafe)
+                    self.generate_qr(fe_info_qr)
                     order.CAFE = str(fe_info_cafe)
+                    order.qr_str = str(fe_info_qr)
 
         return act_window
 
@@ -60,6 +63,8 @@ class PosOrder(models.Model):
     def create_from_ui(self, orders, draft=False):
         order_list = super(PosOrder, self).create_from_ui(orders, draft=draft)
         cufe = self.browse(order_list[0].get('id')).CAFE
+        qr_str = self.browse(order_list[0].get('id')).qr_str
         order_list[0]["CAFE"] = cufe
+        order_list[0]["qr_str"] = qr_str
 
         return order_list

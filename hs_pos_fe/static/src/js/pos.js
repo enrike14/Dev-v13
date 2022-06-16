@@ -63,6 +63,7 @@ odoo.define("pos_fe.screens", function (require) {
       var receipt_data = order.export_for_printing();
 
       receipt_data.cufe = localStorage.getItem("cufe");
+      receipt_data.qr_code = localStorage.getItem("qr_code");
 
       return {
         widget: this,

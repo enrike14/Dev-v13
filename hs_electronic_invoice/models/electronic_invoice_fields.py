@@ -663,6 +663,9 @@ class electronic_invoice_fields(models.Model):
     def get_fe_info(self):
         return self.cafe
 
+    def get_fe_info_qr(self):
+        return self.qr_pos
+
     def is_Pos_info(self):
         isPos = "False"
         config_document_obj = self.env["electronic.invoice"].search(

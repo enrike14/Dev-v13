@@ -17,7 +17,7 @@
         <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='before'>
             <br />
 
-            <div>
+            <div style="font-size:10px;">
                     Comprobante Auxiliar de Factura Electrónica
                    
                 </div>
@@ -33,21 +33,24 @@
                 </div>
             </t>
         </t>
+        <t t-if='widget.pos.get_order()'>
+            <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
+                <br />
+                <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
+                <br />
 
-        <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
-            <br />
-            <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
-            <br />
-            <t t-if='widget.pos.get_order()'>
                 <div>
-
                     <t t-esc='receipt.cufe' />
                 </div>
-            </t>
-            <br />
-            <div>o escaneando el código QR</div>
-        </t>
 
+                <br />
+                <div>o escaneando el código QR</div>
+                <br />
+                <div>
+                    <t t-esc='receipt.qr_code' />
+                </div>
+            </t>
+        </t>
 
     </t>
 

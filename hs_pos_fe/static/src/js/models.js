@@ -1,7 +1,6 @@
 odoo.define("pos_fe.models", function (require) {
   "use strict";
   var models = require("point_of_sale.models");
-  //this.get_model('res.company');
   var _super_order = models.PosModel.prototype;
 
   models.PosModel = models.PosModel.extend({
@@ -12,6 +11,7 @@ odoo.define("pos_fe.models", function (require) {
         function (value) {
           console.log(value);
           localStorage.setItem("cufe", value[0].CAFE);
+          localStorage.setItem("qr_code", value[0].qr_str);
         },
         function (error) {
           console.log(error);
@@ -19,12 +19,6 @@ odoo.define("pos_fe.models", function (require) {
       );
 
       return order_list;
-    },
-
-    initialize: function (session, attributes) {
-      var self = this;
-      models.load_fields("pos.order", ["CAFE", "qr_code", "include_pos"]);
-      _super_order.initialize.apply(this, arguments);
     },
   });
 });
