@@ -33,8 +33,9 @@
                 </div>
             </t>
         </t>
-        <t t-if='widget.pos.get_order()'>
-            <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
+
+        <t t-jquery=".pos-receipt .pos-receipt-order-data" t-operation='append'>
+            <t t-if='widget.pos.get_order()'>
                 <br />
                 <div>Consulte en https://fe.dgi.mef.gob.pa/consulta usando el CUFE:</div>
                 <br />
