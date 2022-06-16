@@ -13,6 +13,7 @@ odoo.define("pos_fe.models", function (require) {
           try {
             localStorage.setItem("cufe", value[0].CAFE);
             localStorage.setItem("qr_code", value[0].qr_str);
+            localStorage.setItem("id", value[0].id);
           } catch (error) {
             console.error(error);
           }

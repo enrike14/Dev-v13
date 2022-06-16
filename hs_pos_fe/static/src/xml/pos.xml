@@ -48,7 +48,6 @@
                 <div>o escaneando el código QR</div>
                 <br />
                 <div>
-                    <t t-esc='receipt.qr_code' />
                     <t t-if='receipt.company.logo'>
                         <img class="pos-receipt-logo" t-att-src='receipt.qr_img' />
                         <br />
