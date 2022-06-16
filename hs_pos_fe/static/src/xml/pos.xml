@@ -14,10 +14,10 @@
     <t t-extend="OrderReceipt">
 
 
-        <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='append'>
+        <t t-jquery=".pos-receipt .pos-receipt-logo" t-operation='before'>
             <br />
 
-            <div>
+            <div class="text-center">
                     Comprobante Auxiliar de Factura Electrónica
                    
                 </div>
