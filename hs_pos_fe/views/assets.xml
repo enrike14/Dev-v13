@@ -6,6 +6,7 @@
             <link rel="stylesheet" href="/hs_pos_fe/static/src/css/custom_order.css"></link>
             <script type="text/javascript" src="/hs_pos_fe/static/src/js/pos.js" />
             <script type="text/javascript" src="/hs_pos_fe/static/src/js/models.js" />
+            <script type="text/javascript" src="/hs_pos_fe/static/src/js/receipt.js" />
         </xpath>
     </template>
 
