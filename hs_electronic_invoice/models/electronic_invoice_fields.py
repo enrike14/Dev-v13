@@ -660,20 +660,6 @@ class electronic_invoice_fields(models.Model):
             "POST", url, headers=headers, data=json.dumps(dataJsonItem))
         return json.loads(response.text)
 
-    def get_fe_info(self):
-        return self.cafe
-
-    def get_fe_info_qr(self):
-        return self.qr_pos
-
-    def is_Pos_info(self):
-        isPos = "False"
-        config_document_obj = self.env["electronic.invoice"].search(
-            [('name', '=', 'ebi-pac')], limit=1)
-        if config_document_obj:
-            isPos = config_document_obj.pos_module
-        return str(isPos)
-
     def get_pdf_fe_pos(self):
         pdf_doc = ""
         self.pagadoCompleto = "Finalizado"

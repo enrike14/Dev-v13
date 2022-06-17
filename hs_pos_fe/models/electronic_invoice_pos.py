@@ -43,26 +43,21 @@ class PosOrder(models.Model):
         act_window = super(PosOrder, self).action_pos_order_invoice()
         for order in self:
             if order.account_move and order.account_move.type == 'out_invoice':
-                logging.info("IS POS INFO::::::" +
-                             order.account_move.is_Pos_info())
-                if order.account_move.is_Pos_info() == 'True':
-                    order.include_pos = str(order.account_move.is_Pos_info())
+
+                # constultamos el objeto de nuestra configuración del servicio
+                config_document_obj = self.env["electronic.invoice"].search(
+                    [('name', '=', 'ebi-pac')], limit=1)
+                if config_document_obj:
+                    isPos = config_document_obj.pos_module
+                    order.include_pos = str(isPos)
+
+                if str(isPos) == 'True':
                     order.account_move.send_fiscal_doc()
                     time.sleep(4)
-                    fe_info_cafe = order.account_move.get_fe_info()
-                    fe_info_qr = order.account_move.get_fe_info_qr()
-                    logging.info("RETORNO FE INFO:" + str(fe_info_qr))
 
-                    self.generate_qr(fe_info_qr)
-                    order.CAFE = str(fe_info_cafe)
-                    order.qr_str = str(fe_info_qr)
-
-                    # constultamos el objeto de nuestra configuración del servicio
-                    config_document_obj = self.env["electronic.invoice"].search(
-                        [('name', '=', 'ebi-pac')], limit=1)
-                    if config_document_obj:
-                        isPos = config_document_obj.pos_module
-                        order.include_pos = str(isPos)
+                    self.generate_qr(order.account_move.qr_pos)
+                    order.CAFE = str(order.account_move.cafe)
+                    order.qr_str = str(order.account_move.qr_pos)
 
         return act_window
 
