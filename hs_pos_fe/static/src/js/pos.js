@@ -68,6 +68,7 @@ odoo.define("pos_fe.screens", function (require) {
         "/web/image?model=pos.order&id=" +
         localStorage.getItem("id") +
         "&field=qr_code";
+      receipt_data.is_pos = localStorage.getItem("is_pos");
 
       return {
         widget: this,

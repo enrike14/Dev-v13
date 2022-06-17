@@ -57,6 +57,13 @@ class PosOrder(models.Model):
                     order.CAFE = str(fe_info_cafe)
                     order.qr_str = str(fe_info_qr)
 
+                    # constultamos el objeto de nuestra configuración del servicio
+                    config_document_obj = self.env["electronic.invoice"].search(
+                        [('name', '=', 'ebi-pac')], limit=1)
+                    if config_document_obj:
+                        isPos = config_document_obj.pos_module
+                        order.include_pos = str(isPos)
+
         return act_window
 
     @api.model
@@ -64,7 +71,10 @@ class PosOrder(models.Model):
         order_list = super(PosOrder, self).create_from_ui(orders, draft=draft)
         cufe = self.browse(order_list[0].get('id')).CAFE
         qr_str = self.browse(order_list[0].get('id')).qr_str
+        include_pos = self.browse(order_list[0].get('id')).include_pos
+
         order_list[0]["CAFE"] = cufe
         order_list[0]["qr_str"] = qr_str
+        order_list[0]["include_pos"] = include_pos
 
         return order_list
