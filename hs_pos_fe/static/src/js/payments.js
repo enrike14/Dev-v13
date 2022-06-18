@@ -9,7 +9,7 @@ odoo.define("pos_fe.screens", function (require) {
       var order = this.pos.get_order();
 
       order.set_to_invoice(true);
-
+      this._super();
       if (order.is_to_invoice()) {
         this.$(".js_invoice").addClass("highlight");
       } else {
