@@ -6,8 +6,10 @@ odoo.define("pos_fe.screens", function (require) {
 
   screens.PaymentScreenWidget.include({
     click_invoice: function () {
-      var order = this.pos.get_order();
       this._super();
+      var self = this;
+      var order = this.pos.get_order();
+
       order.set_to_invoice(true);
 
       if (order.is_to_invoice()) {
@@ -15,6 +17,8 @@ odoo.define("pos_fe.screens", function (require) {
       } else {
         this.$(".js_invoice").removeClass("highlight");
       }
+
+      this._super();
     },
   });
 });
